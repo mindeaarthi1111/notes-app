@@ -1,4 +1,4 @@
-package com.springbootproject.notesapp;
+package com.springbootproject.notesapp.controller;
 
 import com.springbootproject.notesapp.utility.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestParam String username,@RequestParam String password)
     {
-        System.out.println("LOGIN API CALLED");
         if("admin".equals(username) && "admin123".equals(password))
             return jwtUtil.generateToken(username);
 

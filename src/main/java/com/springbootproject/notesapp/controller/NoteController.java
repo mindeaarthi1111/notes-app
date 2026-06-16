@@ -1,4 +1,4 @@
-package com.springbootproject.notesapp;
+package com.springbootproject.notesapp.controller;
 
 import com.springbootproject.notesapp.model.Note;
 import com.springbootproject.notesapp.service.NoteService;
