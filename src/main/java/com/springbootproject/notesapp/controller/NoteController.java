@@ -1,8 +1,14 @@
 package com.springbootproject.notesapp.controller;
 
+import com.springbootproject.notesapp.dto.NoteRequestDto;
+import com.springbootproject.notesapp.dto.NoteResponseDto;
 import com.springbootproject.notesapp.model.Note;
 import com.springbootproject.notesapp.service.NoteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +26,10 @@ public class NoteController {
     }
 
     @PostMapping
-    public Note createNote(@RequestBody Note note)
+    public ResponseEntity<?> createNote(@Valid @RequestBody NoteRequestDto noteRequestDto)
     {
-        return noteService.createNote(note);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(noteService.createNote(noteRequestDto));
     }
 
     @DeleteMapping("/{id}")

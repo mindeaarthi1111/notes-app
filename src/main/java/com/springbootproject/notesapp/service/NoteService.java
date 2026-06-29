@@ -1,5 +1,7 @@
 package com.springbootproject.notesapp.service;
 
+import com.springbootproject.notesapp.dto.NoteRequestDto;
+import com.springbootproject.notesapp.dto.NoteResponseDto;
 import com.springbootproject.notesapp.model.Note;
 import com.springbootproject.notesapp.repository.NoteRepository;
 import lombok.Data;
@@ -16,8 +18,23 @@ public class NoteService {
 
     private final NoteRepository noteRepository;
 
-    public Note createNote(Note note){
-        return noteRepository.save(note);
+    public NoteResponseDto createNote(NoteRequestDto noteRequestDto){
+
+        Note note = new Note();
+        note.setTitle(noteRequestDto.getTitle());
+        note.setContent(noteRequestDto.getContent());
+        Note saved = noteRepository.save(note);
+        return mapToDto(saved);
+    }
+
+    public NoteResponseDto mapToDto(Note note){
+        NoteResponseDto noteResponseDto = new NoteResponseDto();
+        noteResponseDto.setId(note.getId());
+        noteResponseDto.setTitle(note.getTitle());
+        noteResponseDto.setContent(note.getContent());
+
+        return noteResponseDto;
+
     }
 
     public List<Note> getAllNotes(){
