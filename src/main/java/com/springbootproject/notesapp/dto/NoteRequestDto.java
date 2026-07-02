@@ -1,5 +1,6 @@
 package com.springbootproject.notesapp.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
