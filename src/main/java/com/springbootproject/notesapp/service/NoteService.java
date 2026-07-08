@@ -2,6 +2,7 @@ package com.springbootproject.notesapp.service;
 
 import com.springbootproject.notesapp.dto.NoteRequestDto;
 import com.springbootproject.notesapp.dto.NoteResponseDto;
+import com.springbootproject.notesapp.exception.ResourceNotFoundException;
 import com.springbootproject.notesapp.model.Note;
 import com.springbootproject.notesapp.repository.NoteRepository;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 
 @Service
@@ -37,6 +39,9 @@ public class NoteService {
 
     }
 
+    public Note getNoteById(Long id){
+        return noteRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Note not found with id:"+id));
+    }
     public List<Note> getAllNotes(){
         return noteRepository.findAll();
     }

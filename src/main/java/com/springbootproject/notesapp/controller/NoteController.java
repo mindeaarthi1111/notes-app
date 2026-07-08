@@ -25,6 +25,12 @@ public class NoteController {
         return noteService.getAllNotes();
     }
 
+    @GetMapping("/{id}")
+    public Note getNoteById(@PathVariable Long id)
+    {
+        return noteService.getNoteById(id);
+    }
+
     @PostMapping
     public ResponseEntity<?> createNote(@Valid @RequestBody NoteRequestDto noteRequestDto)
     {
